@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Mouse — Download, Setup &amp; Features</title>
+<style>
+  /* ============ TODO before publishing ============
+     1. Replace href="#android-download-todo" with your real APK URL.
+     2. Replace href="#desktop-download-todo" with your real desktop installer URL.
+     3. Confirm which desktop OS(es) you actually ship (currently written as Windows).
+     4. Update version numbers / file sizes in the download cards (currently placeholders).
+     ================================================== */
+
+  :root{
+    --green-900:#1B3B2C;
+    --green-700:#234634;
+    --cream:#F6F1E4;
+    --cream-2:#FBF8F1;
+    --gold:#C89B3C;
+    --ink:#1F2A24;
+    --muted:#6B6455;
+    --line:#DCE4D6;
+    --rule:#B4694F;
+    --white:#FFFFFF;
+    --maroon:#8B3A3A;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:Arial, Helvetica, sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3,.serif{
+    font-family:Georgia,'Times New Roman',serif;
+    color:var(--ink);
+    margin:0;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px;}
+  .rule-margin{
+    position:relative;
+  }
+  .rule-margin::before{
+    content:"";
+    position:absolute;
+    left:32px;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:var(--rule);
+    opacity:0.35;
+  }
+  section{padding:96px 0;}
+  .eyebrow{
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:14px;
+    color:var(--gold);
+    font-weight:bold;
+    margin-bottom:14px;
+  }
+  .lede{
+    max-width:640px;
+    color:var(--muted);
+    font-size:19px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:16px 26px;
+    border-radius:6px;
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:19px;
+    font-weight:bold;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--green-700);color:var(--cream);}
+  .btn-primary:hover{background:var(--green-900);}
+  .btn-outline{background:transparent;color:var(--green-700);border-color:var(--green-700);}
+  .btn-outline:hover{background:var(--green-700);color:var(--cream);}
+
+  /* ---- nav ---- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:var(--green-700);
+    border-bottom:3px solid var(--gold);
+  }
+  .nav{
+    max-width:1040px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+  .brand svg{display:block;}
+  .brand-name{font-family:Georgia,'Times New Roman',serif;font-size:24px;color:var(--cream);}
+  .navlinks{display:flex;align-items:center;gap:30px;}
+  .navlinks a{
+    color:var(--cream-2);
+    text-decoration:none;
+    font-size:15px;
+    letter-spacing:0.3px;
+  }
+  .navlinks a:hover{color:var(--gold);}
+  .nav-cta{
+    background:var(--gold);color:var(--green-900)!important;
+    padding:10px 18px;border-radius:5px;font-weight:bold;
+  }
+  .navToggle{display:none;}
+  @media (max-width:760px){
+    .navlinks{
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--green-700);
+      flex-direction:column;align-items:flex-start;
+      padding:20px 32px;gap:18px;
+      display:none;
+    }
+    .navlinks.open{display:flex;}
+    .navToggle{
+      display:block;background:none;border:1px solid var(--cream);color:var(--cream);
+      padding:8px 12px;border-radius:4px;font-size:14px;cursor:pointer;
+    }
+  }
+
+  /* ---- hero ---- */
+  .hero{
+    background:var(--cream);
+    background-image:repeating-linear-gradient(
+      to bottom, transparent, transparent 45px, var(--line) 46px
+    );
+    padding-top:110px;padding-bottom:90px;
+  }
+  .hero h1{font-size:58px;line-height:1.12;max-width:760px;}
+  .hero .lede{margin:26px 0 40px;}
+  .hero-actions{display:flex;gap:18px;flex-wrap:wrap;}
+  .trial-note{
+    margin-top:22px;font-size:15px;color:var(--muted);
+  }
+
+  /* ---- download ---- */
+  #download{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .dl-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px;
+  }
+  @media (max-width:760px){.dl-grid{grid-template-columns:1fr;}}
+  .dl-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:34px;
+  }
+  .dl-icon{
+    width:52px;height:52px;border-radius:10px;
+    background:var(--green-700);color:var(--cream);
+    display:flex;align-items:center;justify-content:center;
+    font-family:Georgia,serif;font-weight:bold;font-size:22px;
+    margin-bottom:18px;
+  }
+  .dl-card h3{font-size:26px;margin-bottom:8px;}
+  .dl-meta{color:var(--muted);font-size:14px;margin-bottom:22px;}
+  .dl-list{margin:0 0 26px;padding-left:20px;color:var(--muted);font-size:15px;}
+  .dl-list li{margin-bottom:6px;}
+
+  /* ---- how it works ---- */
+  #how-it-works{background:var(--cream);}
+  .steps{margin-top:56px;}
+  .step{
+    display:grid;grid-template-columns:64px 1fr;gap:26px;
+    padding:28px 0;border-top:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:1px solid var(--line);}
+  .step-num{
+    width:44px;height:44px;border-radius:50%;
+    background:var(--green-700);color:var(--cream);
+    display:flex;align-items:center;justify-content:center;
+    font-family:Georgia,serif;font-size:19px;font-weight:bold;
+  }
+  .step h3{font-size:23px;margin-bottom:8px;}
+  .step p{color:var(--muted);margin:0;max-width:620px;font-size:16px;}
+
+  /* ---- features ---- */
+  #features{background:var(--cream-2);border-top:1px solid var(--line);}
+  .feat-cat{
+    margin-top:70px;
+  }
+  .feat-cat:first-of-type{margin-top:56px;}
+  .feat-cat-head{
+    display:flex;align-items:baseline;gap:16px;
+    border-bottom:2px solid var(--green-700);
+    padding-bottom:14px;margin-bottom:26px;
+  }
+  .feat-cat-head h3{font-size:28px;}
+  .feat-cat-head span{color:var(--gold);font-family:Georgia,serif;font-style:italic;font-size:16px;}
+  .feat-row{
+    display:grid;grid-template-columns:260px 1fr;gap:24px;
+    padding:18px 0;border-top:1px solid var(--line);
+  }
+  @media (max-width:700px){.feat-row{grid-template-columns:1fr;gap:6px;}}
+  .feat-term{font-family:Georgia,'Times New Roman',serif;font-weight:bold;font-size:18px;color:var(--ink);}
+  .feat-desc{color:var(--muted);font-size:15.5px;}
+
+  /* ---- faq ---- */
+  #faq{background:var(--cream);}
+  .faq-item{
+    border-top:1px solid var(--line);
+    padding:24px 0;
+  }
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-item h3{font-size:20px;margin-bottom:8px;}
+  .faq-item p{color:var(--muted);margin:0;max-width:680px;}
+
+  /* ---- final cta ---- */
+  #cta{
+    background:var(--green-700);
+    text-align:center;
+    padding:100px 0;
+  }
+  #cta h2{color:var(--cream);font-size:38px;max-width:560px;margin:0 auto 18px;}
+  #cta p{color:var(--cream-2);margin-bottom:38px;}
+  #cta .hero-actions{justify-content:center;}
+
+  footer{
+    background:var(--green-900);
+    color:var(--cream-2);
+    padding:44px 0;
+    font-size:14px;
+  }
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  footer .foot-note{color:#9FB0A3;}
+
+  .stamp{
+    display:inline-block;
+    border:3px solid var(--gold);
+    color:var(--gold);
+    font-family:Georgia,serif;
+    font-weight:bold;
+    letter-spacing:2px;
+    padding:8px 18px;
+    transform:rotate(-4deg);
+    margin-bottom:22px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <a href="#top" class="brand">
+      <svg width="34" height="34" viewBox="-30 -30 60 60">
+        <circle cx="0" cy="0" r="17" fill="#C89B3C"/>
+        <circle cx="-20" cy="-16" r="9" fill="#C89B3C"/>
+        <circle cx="20" cy="-16" r="9" fill="#C89B3C"/>
+        <circle cx="-5" cy="-3" r="2.4" fill="#234634"/>
+        <circle cx="5" cy="-3" r="2.4" fill="#234634"/>
+      </svg>
+      <span class="brand-name">Mr. Mouse</span>
+    </a>
+    <button class="navToggle" onclick="document.getElementById('navlinks').classList.toggle('open')">Menu</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#download">Download</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a href="#download" class="nav-cta">Get started</a>
+    </div>
+  </nav>
+</header>
+
+<div id="top"></div>
+
+<section class="hero rule-margin">
+  <div class="wrap">
+    <div class="eyebrow">BOOKKEEPING FOR NIGERIAN BUSINESSES</div>
+    <h1>Everything you need to run your books, in one place.</h1>
+    <p class="lede">Mr. Mouse keeps your Cash Book, Sales &amp; Purchases Journals, Inventory, Trial Balance and P&amp;L in sync — across every device your team uses, and through WhatsApp or Telegram if you'd rather work from chat.</p>
+    <div class="hero-actions">
+      <a href="#download" class="btn btn-primary">Download the app</a>
+      <a href="#how-it-works" class="btn btn-outline">See how it works</a>
+    </div>
+    <p class="trial-note">Free trial available — no card needed to start.</p>
+  </div>
+</section>
+
+<section id="download" class="rule-margin">
+  <div class="wrap">
+    <div class="eyebrow">DOWNLOAD</div>
+    <h2 style="font-size:38px;">Get Mr. Mouse on your devices</h2>
+    <p class="lede">Install the app where you run your business — on the shop floor with Android, or at the back office on desktop. Both stay in sync with each other automatically.</p>
+
+    <div class="dl-grid">
+      <div class="dl-card">
+        <div class="dl-icon">A</div>
+        <h3>Android</h3>
+        <div class="dl-meta">Installs as a direct APK — no Play Store account needed. Version 1.0 · ~7 MB</div>
+        <ul class="dl-list">
+          <li>Works on Android </li>
+          <li>Log sales and purchases from your phone or tablet</li>
+          <li>Syncs live with every other device on your business account</li>
+        </ul>
+        <a href="https://appdistribution.firebase.dev/i/ad7ecc5c2e2b5fa9" class="btn btn-primary">Download APK</a>
+      </div>
+
+      <div class="dl-card">
+        <div class="dl-icon">D</div>
+        <h3>Desktop</h3>
+        <div class="dl-meta">Windows installer. Version 1.0 · ~250 MB</div>
+        <ul class="dl-list">
+          <li>Best for the back office or a fixed till computer</li>
+          <li>Full access to every book, report, and setting</li>
+          <li>Syncs live with your Android devices and the web app</li>
+        </ul>
+        <a href="https://drive.google.com/file/d/1tA6Uns2DuCtNiy30I9lLK-Prf2TfqB8b/view?usp=drive_link" class="btn btn-primary">Download for Desktop</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works" class="rule-margin">
+  <div class="wrap">
+    <div class="eyebrow">HOW IT WORKS</div>
+    <h2 style="font-size:38px;">From install to your first balanced book</h2>
+    <p class="lede">A walkthrough of exactly what happens after you download Mr. Mouse, start to finish.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Create your account</h3>
+          <p>Sign up with your email or phone number and verify it. This becomes the login for every device you connect afterward.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Set up your business</h3>
+          <p>Enter your business name and choose a plan — Solo, Duo, or Company — based on how many devices your team needs connected at the same time. You can change this later as you grow.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Add your team's devices</h3>
+          <p>Sign in to Mr. Mouse on your other phones, tablets, or the desktop app. Each one joins your business's live sync automatically — no manual exporting or emailing spreadsheets around.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h3>Log your first entry</h3>
+          <p>Tap Add Entry, record a sale or a purchase, and pick a category. Mr. Mouse routes it into the right book for you — Cash Book, Sales Journal, Purchases Journal, or Petty Cash — so you never have to decide where something belongs.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <h3>Watch your books update themselves</h3>
+          <p>Your Trial Balance and Profit &amp; Loss recalculate the moment a new entry lands. If the entry involves a tracked item, your Inventory count adjusts automatically too.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div>
+          <h3>Connect WhatsApp or Telegram (optional)</h3>
+          <p>Link your business to the Mr. Mouse Telegram bot or WhatsApp number. From then on you or your staff can log entries, check today's totals, or ask for a report straight from a chat — nothing to install for whoever's texting it in.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div>
+          <h3>Set up reminders</h3>
+          <p>Add payment deadlines and recurring bills. Mr. Mouse notifies you in-app, and through WhatsApp or Telegram if you've connected them, before anything is due.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="rule-margin">
+  <div class="wrap">
+    <div class="eyebrow">FEATURES</div>
+    <h2 style="font-size:38px;">Everything Mr. Mouse does, in detail</h2>
+    <p class="lede">A full breakdown of every book, sync mechanism, integration, and safeguard built into the app.</p>
+
+    <!-- Core Books -->
+    <div class="feat-cat">
+      <div class="feat-cat-head">
+        <h3>Core Books</h3>
+        <span>the accounts themselves</span>
+      </div>
+
+      <div class="feat-row">
+        <div class="feat-term">Cash Book</div>
+        <div class="feat-desc">Tracks every naira in and out of your business as it happens, with a running balance that recalculates automatically after each entry.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Sales Journal</div>
+        <div class="feat-desc">Every sale is recorded with the customer, item, amount, and payment status, so you can see at a glance what's been paid for and what's still owed.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Purchases Journal</div>
+        <div class="feat-desc">Every purchase from a supplier is logged the same way — item, amount, and payment status — kept separate from sales so the two never get muddled.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Petty Cash Book</div>
+        <div class="feat-desc">A dedicated ledger for small day-to-day expenses (transport, snacks, minor repairs) so they don't clutter your main Cash Book but are still fully accounted for.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Inventory</div>
+        <div class="feat-desc">Stock counts that adjust automatically whenever a sale or purchase references a tracked item, so what the app shows matches what's actually on the shelf.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Trial Balance</div>
+        <div class="feat-desc">A live snapshot of every account's debit and credit balance, generated instantly from your entries rather than compiled by hand at month-end.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Profit &amp; Loss Statement</div>
+        <div class="feat-desc">Revenue minus costs, recalculated the moment a new entry is added, so you always know where the business stands without waiting for a report to be pulled.</div>
+      </div>
+    </div>
+
+    <!-- Team & Sync -->
+    <div class="feat-cat">
+      <div class="feat-cat-head">
+        <h3>Team &amp; Sync</h3>
+        <span>one set of books, everywhere</span>
+      </div>
+
+      <div class="feat-row">
+        <div class="feat-term">Real-time multi-device sync</div>
+        <div class="feat-desc">Every device connected to your business sees the same numbers the instant an entry is made — no refreshing, no re-exporting, no waiting for someone to send an update.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Plan-based device limits</div>
+        <div class="feat-desc">Choose Solo, Duo, or Company depending on how many devices your team needs connected at once. Upgrade any time your team grows.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Consistent records across staff</div>
+        <div class="feat-desc">Because every device reads and writes to the same live business account, there's no version of the books that only exists on one person's phone.</div>
+      </div>
+    </div>
+
+    <!-- WhatsApp & Telegram -->
+    <div class="feat-cat">
+      <div class="feat-cat-head">
+        <h3>WhatsApp &amp; Telegram</h3>
+        <span>bookkeeping from a chat window</span>
+      </div>
+
+      <div class="feat-row">
+        <div class="feat-term">Telegram bot</div>
+        <div class="feat-desc">Log a sale, check today's totals, or pull a quick report without opening the app — all from a Telegram chat.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">WhatsApp document delivery</div>
+        <div class="feat-desc">Receive receipts, statements, and reports sent directly to your WhatsApp, ready to forward to a customer, supplier, or accountant.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Two-way sync</div>
+        <div class="feat-desc">Anything logged through the bot appears in the app instantly, and anything logged in the app is reflected the next time you check in on chat.</div>
+      </div>
+    </div>
+
+    <!-- Reminders -->
+    <div class="feat-cat">
+      <div class="feat-cat-head">
+        <h3>Reminders &amp; Deadlines</h3>
+        <span>nothing falls through</span>
+      </div>
+
+      <div class="feat-row">
+        <div class="feat-term">Payment deadlines</div>
+        <div class="feat-desc">Set a due date for a bill or a customer's outstanding balance and Mr. Mouse tracks it for you.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Automated nudges</div>
+        <div class="feat-desc">Reminders arrive in-app, and through WhatsApp or Telegram too if you've connected them, ahead of the actual due date.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Add-on renewal tracking</div>
+        <div class="feat-desc">Telegram and WhatsApp add-ons renew automatically on schedule, so your integrations don't quietly lapse mid-month.</div>
+      </div>
+    </div>
+
+    <!-- Security -->
+    <div class="feat-cat">
+      <div class="feat-cat-head">
+        <h3>Security</h3>
+        <span>your books, protected</span>
+      </div>
+
+      <div class="feat-row">
+        <div class="feat-term">Verified sessions</div>
+        <div class="feat-desc">Every request is checked against a secure, cookie-based login token, so data can't be accessed without a verified sign-in.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Locked-down business data</div>
+        <div class="feat-desc">Business records are tied to verified accounts rather than to whatever ID a device happens to send, closing off a whole class of data-leak risks.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Sanitized inputs</div>
+        <div class="feat-desc">Incoming data is cleaned before it ever touches the database, guarding against common injection-style attacks.</div>
+      </div>
+    </div>
+
+    <!-- Platforms -->
+    <div class="feat-cat">
+      <div class="feat-cat-head">
+        <h3>Platforms</h3>
+        <span>work from wherever you are</span>
+      </div>
+
+      <div class="feat-row">
+        <div class="feat-term">Android</div>
+        <div class="feat-desc">Installs directly as an APK — no Play Store account required to get started.</div>
+      </div>
+      <div class="feat-row">
+        <div class="feat-term">Desktop</div>
+        <div class="feat-desc">A native installer for your main till or back-office computer, with full access to every book, report, and setting.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="rule-margin">
+  <div class="wrap">
+    <div class="eyebrow">FAQ</div>
+    <h2 style="font-size:38px;">Common questions</h2>
+
+    <div class="faq-item">
+      <h3>Is there a free trial?</h3>
+      <p>Yes. You can start using Mr. Mouse without a card, and decide on a plan once you've had a chance to try it on your own books.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do I need the Play Store to install the Android version?</h3>
+      <p>No. The Android app is distributed as a direct APK download, so you can install it straight from the link on this page.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can my whole team use it at once?</h3>
+      <p>Yes. Choose the Solo, Duo, or Company plan based on how many devices need to be connected at the same time, and every device stays in live sync.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do I have to use WhatsApp or Telegram?</h3>
+      <p>No — they're optional. You can run everything from the app alone, or connect either (or both) if you'd rather log entries from a chat window.</p>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap">
+    <div class="stamp">FREE TRIAL</div>
+    <h2>Get your books off paper and spreadsheets today.</h2>
+    <p>No card required to start.</p>
+    <div class="hero-actions">
+      <a href="#android-download-todo" class="btn" style="background:var(--gold);color:var(--green-900);">Download for Android</a>
+      <a href="#desktop-download-todo" class="btn" style="background:transparent;color:var(--cream);border-color:var(--cream);">Download for Desktop</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="year"></span> Mr. Mouse. Bookkeeping built for Nigerian businesses.</div>
+    <div class="foot-note">Prices and plan details are shown inside the app.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
