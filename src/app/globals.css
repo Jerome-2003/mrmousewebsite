@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* =========================================================
+   HORDE-M — "Armory" identity tokens
+   The horde is a tool rack: machined edges, gunmetal grounds,
+   brass as the only bright thing, oxide for state.
+   ========================================================= */
+
+@theme {
+  /* -- grounds -- */
+  --color-gunmetal: #14181c;
+  --color-plate: #1e252b;
+  --color-steel: #2c353c;
+  --color-rail: #3b464f;
+
+  /* -- light ground (spec-sheet surfaces) -- */
+  --color-bone: #efebe2;
+  --color-bone-2: #e3ded2;
+
+  /* -- ink -- */
+  --color-ash: #8d9aa4;
+  --color-ash-dim: #67727b;
+
+  /* -- signal -- */
+  --color-brass: #d4a02a;
+  --color-brass-dim: #a87d1d;
+  --color-oxide: #1f8e77;
+
+  /* -- client accents, pulled from each build's real UI -- */
+  --color-divic-gold: #c8a951;
+  --color-divic-clay: #9a4f1b;
+  --color-lumadew-cocoa: #6b4630;
+  --color-mrmouse-olive: #1e241e;
+
+  /* -- type -- */
+  --font-display: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --font-body: var(--font-spline), "Spline Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* -- machined, not soft -- */
+  --radius-plate: 2px;
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-gunmetal);
+}
+
+body {
+  background: var(--color-gunmetal);
+  color: var(--color-bone);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-wrap: balance;
+  text-transform: uppercase;
+}
+
+/* Running text should never exceed a comfortable measure. */
+.measure {
+  max-width: 64ch;
+}
+.measure-tight {
+  max-width: 52ch;
+}
+
+/* Numbers that sit in columns line up. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   The stamped tag — the reusable unit of the identity.
+   Every service and every piece of work gets stamped into one.
+   ========================================================= */
+
+.tag {
+  border: 1px solid var(--color-steel);
+  border-radius: var(--radius-plate);
+  background: var(--color-plate);
+}
+
+.tag-brass {
+  border-color: color-mix(in srgb, var(--color-brass) 42%, transparent);
+}
+
+/* Rack rail — the vertical line work runs along, like a tool rack's edge. */
+.rail {
+  border-left: 2px solid var(--color-brass);
+}
+
+/* =========================================================
+   Focus + motion
+   ========================================================= */
+
+:focus-visible {
+  outline: 2px solid var(--color-brass);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+::selection {
+  background: var(--color-brass);
+  color: var(--color-gunmetal);
+}
