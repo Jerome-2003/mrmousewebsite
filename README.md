@@ -39,8 +39,29 @@ src/
 ```
 
 **Adding a piece of work:** add one entry to `PIECES` in `src/data/horde.ts`.
-The rack listing, its case-study route, the sitemap, the footer and the hero
-animation all read from that array.
+The rack listing, its case-study route, the sitemap, the footer, the hero
+animation and the promo video all read from that array.
+
+## The promo video
+
+A 15-second promo for social, in two aspect ratios:
+
+```bash
+npm run promo:portrait   # 1080x1920 — WhatsApp Status, Stories, Reels, TikTok
+npm run promo:square     # 1080x1080 — LinkedIn and Instagram feed
+```
+
+Both render from `src/remotion/HordePromo.tsx` into `out/`. There is no audio.
+The film runs in five beats: four scattered vendors, the turn, the four real
+builds landing in the same four slots, the mark assembling, then the address.
+
+Fonts are vendored in `public/fonts` rather than fetched at render time, so the
+composition renders identically anywhere and needs no network. Note that those
+files are the Google **latin** subset, which does not include the naira sign
+(U+20A6) — avoid the character in composition copy. Web pages are unaffected,
+since browsers fall back per glyph.
+
+Preview and scrub either composition in Remotion Studio with `npm run remotion`.
 
 ## The identity
 
