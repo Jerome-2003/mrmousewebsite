@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import { HeroPlayer } from "@/components/HeroPlayer";
+import { ContactForm } from "@/components/ContactForm";
+import { WaitlistForm } from "@/components/WaitlistForm";
 import { CONTACT, PIECES, SERVICES } from "@/data/horde";
 
 export default function HomePage() {
@@ -166,6 +168,9 @@ export default function HomePage() {
                 back to us for every change. More on it when it is ready to be used rather than
                 announced.
               </p>
+              <div className="max-w-md pt-2">
+                <WaitlistForm />
+              </div>
             </div>
           </div>
         </div>
@@ -201,24 +206,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="tag flex flex-col gap-5 p-7">
-              <h3 className="text-lg">What to put in the first message</h3>
-              <ul className="flex flex-col gap-4">
-                {[
-                  ["What the business does", "One line is enough. The trade and roughly how many people."],
-                  ["What you need", "A site, a system, email, or hands on something that already exists."],
-                  ["What is happening now", "Paper, WhatsApp, a half-finished build someone abandoned — all fine."],
-                  ["When", "A real deadline changes what we recommend, so tell us if there is one."],
-                ].map(([term, detail]) => (
-                  <li key={term} className="flex flex-col gap-1 border-t border-steel pt-4 first:border-t-0 first:pt-0">
-                    <span className="font-display font-bold uppercase tracking-[-0.01em] text-bone">
-                      {term}
-                    </span>
-                    <span className="text-sm text-ash">{detail}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </section>
