@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
+import { SITE } from "@/data/horde";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://horde-m.agency.ng/sitemap.xml",
+    sitemap: `${SITE.url}/sitemap.xml`,
   };
 }

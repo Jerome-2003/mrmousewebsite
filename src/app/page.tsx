@@ -182,12 +182,23 @@ export default function HomePage() {
                 will get a straight answer on whether we are the right people, what it would
                 take, and roughly what it costs — not a discovery call.
               </p>
-              <a
-                href={`mailto:${CONTACT.email}`}
-                className="font-display text-[clamp(1.3rem,3.6vw,2rem)] font-black uppercase tracking-[-0.03em] text-brass underline decoration-brass/40 underline-offset-8 transition-colors hover:text-bone hover:decoration-bone/40"
-              >
-                {CONTACT.emailDisplay}
-              </a>
+              <div className="flex flex-col gap-3">
+                <a
+                  href={`mailto:${CONTACT.email}`}
+                  className="font-display text-[clamp(1.3rem,3.6vw,2rem)] font-black uppercase tracking-[-0.03em] text-brass underline decoration-brass/40 underline-offset-8 transition-colors hover:text-bone hover:decoration-bone/40"
+                >
+                  {CONTACT.emailDisplay}
+                </a>
+                <a
+                  href={CONTACT.phoneHref}
+                  className="font-display text-[clamp(1.3rem,3.6vw,2rem)] font-black uppercase tracking-[-0.03em] text-brass underline decoration-brass/40 underline-offset-8 transition-colors hover:text-bone hover:decoration-bone/40"
+                >
+                  {CONTACT.phoneDisplay}
+                </a>
+                <p className="text-sm text-ash-dim">
+                  Call or message on WhatsApp — whichever is easier.
+                </p>
+              </div>
             </div>
 
             <div className="tag flex flex-col gap-5 p-7">

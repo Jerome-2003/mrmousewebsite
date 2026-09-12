@@ -105,8 +105,10 @@ body with an `<Image />`, and keep the `<figcaption>`.
 
 These are marked in the code and need confirming before launch:
 
-1. **Contact email.** Supplied as `info.horde-m.agency.ng`; written into
-   `src/data/horde.ts` as `info@horde-m.agency.ng`. Confirm the address.
+1. **Site domain.** `SITE.url` in `src/data/horde.ts` is `https://horde-m.name.ng`,
+   inferred from the corrected contact address — the earlier `horde-m.agency.ng`
+   came from the same string. If the website itself lives on a different domain,
+   change `SITE` and everything (metadata, sitemap, robots, promo video) follows.
 2. **Lamadew vs Luma Dew.** The storefront brands itself "Luma Dew"; the brief
    called it "Lamadew Cosmetics". The brief's name is used as the piece title,
    with "Luma Dew" shown as the product name. Correct in `PIECES` if wrong.

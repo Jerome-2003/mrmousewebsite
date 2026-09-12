@@ -1,6 +1,6 @@
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
-import { PIECES, CONTACT } from "../data/horde";
+import { PIECES, CONTACT, SITE } from "../data/horde";
 import { MARK_PIECES, MARK_SHELF, MARK_VIEWBOX } from "../components/markGeometry";
 import { BODY, DISPLAY } from "./fonts";
 
@@ -353,7 +353,7 @@ export const HordePromo: React.FC = () => {
             translate: interpolate(frame, [T.ctaUrl, T.ctaUrl + 14], [`0px ${18 * u}px`, "0px 0px"], E),
           }}
         >
-          horde&#8209;m.agency.ng
+          {SITE.display}
         </span>
 
         <div
@@ -372,6 +372,9 @@ export const HordePromo: React.FC = () => {
           ))}
           <span style={{ fontSize: (tight ? 24 : 30) * u, color: C.oxide, marginTop: 12 * u }}>
             {CONTACT.emailDisplay}
+          </span>
+          <span style={{ fontSize: (tight ? 24 : 30) * u, color: C.oxide }}>
+            {CONTACT.phoneDisplay}
           </span>
         </div>
       </AbsoluteFill>
