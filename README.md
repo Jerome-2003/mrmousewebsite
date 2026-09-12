@@ -119,6 +119,36 @@ These are marked in the code and need confirming before launch:
    the old site. Confirm they are still live.
 5. **CMS.** Stated as coming, with no waitlist capture, as requested.
 
+## Email
+
+The contact form and CMS waitlist send mail through [Resend](https://resend.com):
+
+- `src/lib/mail.ts` — the Resend client and shared send helper
+- `src/app/api/contact/route.ts` — validates the contact form, notifies
+  `CONTACT.email` (receive), and sends the visitor a confirmation (send)
+- `src/app/api/waitlist/route.ts` — same shape, for the CMS waitlist signup
+- `src/components/ContactForm.tsx` / `WaitlistForm.tsx` — the client forms,
+  each with a hidden honeypot field against basic bots
+
+**Setup:**
+
+1. Copy `.env.example` to `.env.local` and add your `RESEND_API_KEY`
+   (from [resend.com/api-keys](https://resend.com/api-keys)). This file is
+   gitignored — never commit a real key.
+2. On your host (Vercel: Project Settings → Environment Variables), add the
+   same `RESEND_API_KEY` for Production and Preview. Local `.env.local` only
+   covers `npm run dev` on your own machine.
+3. Mail sends from Resend's own onboarding address until `horde-m.name.ng` is
+   verified as a sending domain in the Resend dashboard (Domains → Add
+   Domain, then add the DNS records it gives you at your registrar). Once
+   verified, set `RESEND_FROM_EMAIL` to send as `info@horde-m.name.ng`
+   instead — see `.env.example`.
+
+This environment's network policy blocks `api.resend.com`, so sending was
+verified structurally (validation, honeypot, error handling all confirmed
+against a local server) but not end-to-end. Test a real submission once
+deployed.
+
 ## Deploying
 
 Static output, so any Next.js host works; Vercel needs no configuration.
