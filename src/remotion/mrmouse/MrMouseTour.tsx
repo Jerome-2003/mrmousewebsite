@@ -1,16 +1,14 @@
 import React from "react";
 import {
   AbsoluteFill,
-  Easing,
   Sequence,
-  continueRender,
-  delayRender,
   interpolate,
   staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import { Mouse } from "./MouseArt";
+import { C, DISPLAY, BODY, MONO, EASE, CLAMP, useFonts } from "./theme";
 
 /**
  * "Mr. Mouse, in thirty seconds."
@@ -36,61 +34,6 @@ export const MRMOUSE_TOUR = {
      scenes stack instead of sitting side by side. */
   portrait: { width: 1080, height: 1920 },
 } as const;
-
-const C = {
-  paper: "#F7F5EF",
-  paperSunk: "#EFECE2",
-  rule: "#DDD8C9",
-  ink: "#1C2118",
-  inkSoft: "#5A6152",
-  action: "#2F5741",
-  moss: "#4F7355",
-  mossLift: "#8FB49B",
-  clay: "#A8483A",
-  chartIn: "#2E7D4F",
-  chartOut: "#C08A2E",
-} as const;
-
-const DISPLAY = '"Syne", system-ui, sans-serif';
-const BODY = '"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif';
-const MONO = '"IBM Plex Mono", ui-monospace, monospace';
-
-const EASE = {
-  extrapolateLeft: "clamp",
-  extrapolateRight: "clamp",
-  easing: Easing.bezier(0.16, 1, 0.3, 1),
-} as const;
-
-const CLAMP = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
-
-/* Remotion renders frames headlessly, so a webfont that is merely referenced
-   will not be loaded in time and every frame bakes the fallback. Block the
-   render until the three faces are actually ready. */
-const fontHandle = delayRender("Loading Mr. Mouse typefaces");
-if (typeof window !== "undefined") {
-  Promise.all([
-    new FontFace("Syne", `url(${staticFile("fonts/syne-var-latin.woff2")}) format("woff2")`, {
-      weight: "400 800",
-    }).load(),
-    new FontFace(
-      "IBM Plex Sans",
-      `url(${staticFile("fonts/ibm-plex-sans-var-latin.woff2")}) format("woff2")`,
-      { weight: "400 600" }
-    ).load(),
-    new FontFace(
-      "IBM Plex Mono",
-      `url(${staticFile("fonts/ibm-plex-mono-400-latin.woff2")}) format("woff2")`,
-      { weight: "400" }
-    ).load(),
-  ])
-    .then((faces) => {
-      faces.forEach((f) => document.fonts.add(f));
-      continueRender(fontHandle);
-    })
-    .catch(() => continueRender(fontHandle));
-} else {
-  continueRender(fontHandle);
-}
 
 const naira = (n: number) =>
   `₦${Math.round(n).toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -481,7 +424,9 @@ const GetIt: React.FC = () => {
 
 /* ---------------------------------------------------------------- film */
 
-export const MrMouseTour: React.FC = () => (
+export const MrMouseTour: React.FC = () => {
+  useFonts();
+  return (
   <AbsoluteFill style={{ background: C.paper }}>
     <Sequence durationInFrames={140}><Open /></Sequence>
     <Sequence from={140} durationInFrames={150}><OneEntry /></Sequence>
@@ -490,4 +435,5 @@ export const MrMouseTour: React.FC = () => (
     <Sequence from={600} durationInFrames={150}><FromChat /></Sequence>
     <Sequence from={750} durationInFrames={150}><GetIt /></Sequence>
   </AbsoluteFill>
-);
+  );
+};

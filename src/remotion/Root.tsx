@@ -2,6 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { HordeAssembly, HORDE_ASSEMBLY } from "./HordeAssembly";
 import { MrMouseTour, MRMOUSE_TOUR } from "./mrmouse/MrMouseTour";
+import { MrMouseTutorial, MRMOUSE_TUTORIAL } from "./mrmouse/MrMouseTutorial";
 import { HordePromo, HORDE_PROMO } from "./HordePromo";
 
 export const RemotionRoot: React.FC = () => {
@@ -38,6 +39,25 @@ export const RemotionRoot: React.FC = () => {
         fps={MRMOUSE_TOUR.fps}
         width={MRMOUSE_TOUR.portrait.width}
         height={MRMOUSE_TOUR.portrait.height}
+      />
+
+      {/* Mr. Mouse — the walkthrough, 58s. Six steps in the order a shop
+          owner meets them, over real captures of the running app. */}
+      <Composition
+        id="MrMouseTutorial"
+        component={MrMouseTutorial}
+        durationInFrames={MRMOUSE_TUTORIAL.durationInFrames}
+        fps={MRMOUSE_TUTORIAL.fps}
+        width={MRMOUSE_TUTORIAL.width}
+        height={MRMOUSE_TUTORIAL.height}
+      />
+      <Composition
+        id="MrMouseTutorialPortrait"
+        component={MrMouseTutorial}
+        durationInFrames={MRMOUSE_TUTORIAL.durationInFrames}
+        fps={MRMOUSE_TUTORIAL.fps}
+        width={MRMOUSE_TUTORIAL.portrait.width}
+        height={MRMOUSE_TUTORIAL.portrait.height}
       />
 
       {/* Promo, 15s. Portrait for Status, Stories and Reels. */}
