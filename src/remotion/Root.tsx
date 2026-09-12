@@ -1,6 +1,7 @@
 import React from "react";
 import { Composition } from "remotion";
 import { HordeAssembly, HORDE_ASSEMBLY } from "./HordeAssembly";
+import { MrMouseTour, MRMOUSE_TOUR } from "./mrmouse/MrMouseTour";
 import { HordePromo, HORDE_PROMO } from "./HordePromo";
 
 export const RemotionRoot: React.FC = () => {
@@ -14,6 +15,29 @@ export const RemotionRoot: React.FC = () => {
         fps={HORDE_ASSEMBLY.fps}
         width={HORDE_ASSEMBLY.width}
         height={HORDE_ASSEMBLY.height}
+      />
+
+      {/* Mr. Mouse — promo and walkthrough in one, 30s.
+          Landscape master for the site and YouTube. */}
+      <Composition
+        id="MrMouseTour"
+        component={MrMouseTour}
+        durationInFrames={MRMOUSE_TOUR.durationInFrames}
+        fps={MRMOUSE_TOUR.fps}
+        width={MRMOUSE_TOUR.width}
+        height={MRMOUSE_TOUR.height}
+      />
+
+      {/* Same film, portrait. WhatsApp Status is where this audience
+          actually watches things, so it is not an afterthought — the
+          layout stacks rather than being letterboxed. */}
+      <Composition
+        id="MrMouseTourPortrait"
+        component={MrMouseTour}
+        durationInFrames={MRMOUSE_TOUR.durationInFrames}
+        fps={MRMOUSE_TOUR.fps}
+        width={MRMOUSE_TOUR.portrait.width}
+        height={MRMOUSE_TOUR.portrait.height}
       />
 
       {/* Promo, 15s. Portrait for Status, Stories and Reels. */}
