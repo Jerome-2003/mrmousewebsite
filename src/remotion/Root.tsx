@@ -3,6 +3,7 @@ import { Composition } from "remotion";
 import { HordeAssembly, HORDE_ASSEMBLY } from "./HordeAssembly";
 import { MrMouseTour, MRMOUSE_TOUR } from "./mrmouse/MrMouseTour";
 import { MrMouseTutorial, MRMOUSE_TUTORIAL } from "./mrmouse/MrMouseTutorial";
+import { MrMouseOffline, MRMOUSE_OFFLINE } from "./mrmouse/MrMouseOffline";
 import { HordePromo, HORDE_PROMO } from "./HordePromo";
 
 export const RemotionRoot: React.FC = () => {
@@ -58,6 +59,24 @@ export const RemotionRoot: React.FC = () => {
         fps={MRMOUSE_TUTORIAL.fps}
         width={MRMOUSE_TUTORIAL.portrait.width}
         height={MRMOUSE_TUTORIAL.portrait.height}
+      />
+
+      {/* Episode 2 — "No network, no wahala." 30s spot on offline-first. */}
+      <Composition
+        id="MrMouseOffline"
+        component={MrMouseOffline}
+        durationInFrames={MRMOUSE_OFFLINE.durationInFrames}
+        fps={MRMOUSE_OFFLINE.fps}
+        width={MRMOUSE_OFFLINE.width}
+        height={MRMOUSE_OFFLINE.height}
+      />
+      <Composition
+        id="MrMouseOfflinePortrait"
+        component={MrMouseOffline}
+        durationInFrames={MRMOUSE_OFFLINE.durationInFrames}
+        fps={MRMOUSE_OFFLINE.fps}
+        width={MRMOUSE_OFFLINE.portrait.width}
+        height={MRMOUSE_OFFLINE.portrait.height}
       />
 
       {/* Promo, 15s. Portrait for Status, Stories and Reels. */}
