@@ -257,9 +257,17 @@ export const SERVICES: Service[] = [
    Contact
    --------------------------------------------------------------- */
 
+export const SITE = {
+  /* Single source for the domain — layout metadata, sitemap, robots and the
+     promo video all read from here. */
+  url: "https://horde-m.name.ng",
+  display: "horde-m.name.ng",
+};
+
 export const CONTACT = {
-  /* NOTE: supplied as "info.horde-m.agency.ng" — read as an address.
-     Confirm before this goes live. */
-  email: "info@horde-m.agency.ng",
-  emailDisplay: "info@horde-m.agency.ng",
+  email: "info@horde-m.name.ng",
+  emailDisplay: "info@horde-m.name.ng",
+  /* Same digits as supplied (09027482958), grouped for legibility. */
+  phoneDisplay: "0902 748 2958",
+  phoneHref: "tel:+2349027482958",
 };

@@ -12,12 +12,20 @@ export const SiteFooter: React.FC = () => (
           Horde-M builds and runs software for small businesses and independent operators —
           the ones who were never going to hire four vendors to get one job done.
         </p>
-        <a
-          href={`mailto:${CONTACT.email}`}
-          className="font-display text-lg font-bold uppercase tracking-[-0.02em] text-brass hover:text-bone"
-        >
-          {CONTACT.emailDisplay}
-        </a>
+        <div className="flex flex-col gap-1">
+          <a
+            href={`mailto:${CONTACT.email}`}
+            className="font-display text-lg font-bold uppercase tracking-[-0.02em] text-brass hover:text-bone"
+          >
+            {CONTACT.emailDisplay}
+          </a>
+          <a
+            href={CONTACT.phoneHref}
+            className="font-display text-lg font-bold uppercase tracking-[-0.02em] text-brass hover:text-bone"
+          >
+            {CONTACT.phoneDisplay}
+          </a>
+        </div>
       </div>
 
       <div className="flex flex-col gap-3">

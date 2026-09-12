@@ -232,6 +232,12 @@ export default async function CaseStudyPage({ params }: Params) {
             >
               {CONTACT.emailDisplay}
             </a>
+            <a
+              href={CONTACT.phoneHref}
+              className="rounded-plate border border-rail px-5 py-3 font-semibold text-bone transition-colors hover:border-brass hover:text-brass"
+            >
+              {CONTACT.phoneDisplay}
+            </a>
           </div>
         </div>
       </section>

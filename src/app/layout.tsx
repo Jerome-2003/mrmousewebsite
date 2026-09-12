@@ -3,6 +3,7 @@ import { Archivo, Spline_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SITE } from "@/data/horde";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -19,7 +20,7 @@ const splineSans = Spline_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://horde-m.agency.ng"),
+  metadataBase: new URL(SITE.url),
   title: {
     default: "Horde-M — software, email and engineering for small businesses",
     template: "%s — Horde-M",
